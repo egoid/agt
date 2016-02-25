@@ -1,0 +1,33 @@
+<div class="padding">
+<br><br>
+<p> 
+<div class="list">
+  <div class="item item-divider" style="font-size:60px;height:250px
+  "><br>
+    <center> 
+      <button style="color:red;font-size:64px" id="startR"> record </button> 
+      <button style="font-size:64px" id="stopR"> stop </button> 
+    </center>
+  </div>
+</div>
+<video width="320" height="240" id="videoPlayer" controls>
+  <source src="*" id="videoCapture" type="video/ogg">
+</video>
+<ul class="pinBoard" style="height:85vh;overflow:scroll">
+</ul>
+<li class="card" id="incoming">
+</li>
+<script>
+  // To inline JavaScript here is suboptimal and only used in this tutorial.
+  // The Steroids.js API documentation is at http://docs.appgyver.com
+
+  steroids.view.navigationBar.show("GPS, CONTACTS, TWITTER");
+
+  // In the next part of this tutorial we learn how to do this properly with external JavaScript files
+
+  function openShow() {
+    var otherView = new steroids.views.WebView("/views/steroidsTutorial/show.html");
+    steroids.layers.push(otherView);
+  }
+
+</script>
