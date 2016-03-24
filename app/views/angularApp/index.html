@@ -1,30 +1,12 @@
 <div class="padding">
-<br><br>
-<p> 
-<div class="list">
-  <div class="item item-divider" style="font-size:60px;height:75px
-  "><br>
-    <center> <span id="gps"> Waiting for GPS... </span> </center>
-  </div>
-</div>
-<center> <span style="font-size:48px"> Your Contacts </span> </center>
-
-<ul class="pinBoard" style="height:85vh;overflow:scroll">
-</ul>
-<li class="card" id="incoming">
-</li>
-
-<script>
-  // To inline JavaScript here is suboptimal and only used in this tutorial.
-  // The Steroids.js API documentation is at http://docs.appgyver.com
-
-  steroids.view.navigationBar.show("GPS, CONTACTS, TWITTER");
-
-  // In the next part of this tutorial we learn how to do this properly with external JavaScript files
-
-  function openShow() {
-    var otherView = new steroids.views.WebView("/views/steroidsTutorial/show.html");
-    steroids.layers.push(otherView);
-  }
-
-</script>
+Iphone Contacts:<br>
+<ion-content zooming="true" direction="xy" style="width: 500px; height: 500px">
+  <div class="list" style="width:500px;height:500px;overflow:scroll">
+    <a class="item" href="#" ng-repeat="person in message">
+     {{person.name.givenName}}  -- {{person.phoneNumbers[0].value}}   </a>
+    </a>
+  </div><br>
+<p>
+GPS:<br>
+{{gps}}
+</ion-content>

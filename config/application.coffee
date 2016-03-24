@@ -20,9 +20,9 @@ steroids.config.tabBar.tabs = [
     location: "https://twitter.com/share"
   },
   {
-    title: "PhoneCap"
+    title: "Chosen"
     icon: ""
-    location: "http://localhost/views/angularApp/phonecap.html"
+    location: "http://localhost/views/chosen/index.html"
   }  
 ]
 
