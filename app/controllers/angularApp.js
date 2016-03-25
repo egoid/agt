@@ -2,8 +2,9 @@ var app = angular.module('plunker', []);
 
 app.controller('MainCtrl', function($scope, $rootScope) {
   document.addEventListener("deviceready", onDeviceReady, false);
-  $scope.androidContacts = [];
-  var androidContacts = [];
+  $scope.checkMap = [];
+  $scope.iosContacts = [];
+  var iosContacts = [];
   $scope.iosContacts = [];
   $scope.gps = "waiting...";
 
@@ -16,11 +17,13 @@ app.controller('MainCtrl', function($scope, $rootScope) {
   function contactFunction() {
     function onSuccess(contacts) {
       for (var i=0;i<contacts.length;i++){
-        if (contacts[i].displayName) {
+        if (contacts[i].displayName && contacts[i].phoneNumbers) {
+          $scope.checkMap.push(-1);
           $scope.androidContacts.push(contacts[i]); 
           $scope.$apply();
         };
-        if (contacts[i].name.givenName) {
+        if (contacts[i].name.givenName && contacts[i].phoneNumbers) {
+          $scope.checkMap.push(-1);          
           $scope.iosContacts.push(contacts[i]);
           $scope.$apply();
         }
@@ -40,13 +43,24 @@ app.controller('MainCtrl', function($scope, $rootScope) {
   };
 //************************//
 $scope.pickContact = function(id) {
-  androidContacts.push($scope.androidContacts[id]);
-  localStorage.chosenContacts = androidContacts;
-  alert(localStorage.chosenContacts);
+  if ($scope.checkMap[id] < 0) {
+    add(id);
+  } else {
+    remove(id);
+  }
+};
+function add(id) {
+    window.postMessage({action: "add",
+                          data: $scope.iosContacts[id]});
+    $scope.checkMap[id] = $scope.checkMap[id]*-1;
 }
-$scope.check = function() {
-  alert(localStorage.chosenContacts)
+function remove(id) {
+    window.postMessage({action: "remove",
+                          data: $scope.iosContacts[id]});
+    $scope.checkMap[id] = $scope.checkMap[id]*-1;
 }
+
+
 //************************//
   function gpsFunction() {
     var onPos = function(position) {
