@@ -1,10 +1,13 @@
 <div class="padding">
 Iphone Contacts:<br>
 <ion-content zooming="true" direction="xy" style="width: 500px; height: 500px">
-  <div class="list" style="width:500px;height:500px;overflow:scroll">
-    <a class="item" href="#" ng-repeat="person in message">
-     {{person.name.givenName}}  -- {{person.phoneNumbers[0].value}}   </a>
-    </a>
+  <span style="font-size:28px"> CHOOSE CONTACTS </a>
+  <div class="list" style="width:500px;height:800px;overflow:scroll">
+    <a class="item" href="#" ng-repeat="person in iosContacts track by $index" ng-click="pickContact($index)" style="font-size:28px">
+      {{person.name.givenName}} - {{person.phoneNumbers[0].value}}<br>
+      <span ng-if="checkMap[$index] < 0" class="ion-log-in"></span>
+      <span ng-if="checkMap[$index] > 0" class="ion-checkmark-round"></span>
+   </a>
   </div><br>
 <p>
 GPS:<br>
