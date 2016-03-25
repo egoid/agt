@@ -1,11 +1,13 @@
 <div class="padding">
 Android Contacts:<br>
 <ion-content zooming="true" direction="xy" style="width: 500px; height: 500px">
-  <a ng-click="changeView()" style="font-size:28px"> CHOOSE CONTACTS </a>
+  <span style="font-size:28px"> CHOOSE CONTACTS </a>
   <div class="list" style="width:500px;height:800px;overflow:scroll">
     <a class="item" href="#" ng-repeat="person in androidContacts track by $index" ng-click="pickContact($index)" style="font-size:28px">
-      {{person.displayName}} - {{person.phoneNumbers[0].value}}
-    </a>
+      {{person.displayName}} - {{person.phoneNumbers[0].value}}<br>
+      <span ng-if="checkMap[$index] < 0" class="ion-log-in"></span>
+      <span ng-if="checkMap[$index] > 0" class="ion-checkmark-round"></span>
+   </a>
   </div><br>
 <p>
 GPS:<br>
